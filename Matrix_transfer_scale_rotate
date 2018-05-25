@@ -1,0 +1,37 @@
+float4x4 rotate(float4 rotation){
+    float rx = radians(rotation.x);
+    float ry = radians(rotation.y);
+    float rz = radians(rotation.z);
+
+    float sinx = sin(rx);
+    float cosx = cos(rx);
+    float siny = sin(ry);
+    float cosy = cos(ry);
+    float sinz = sin(rz);
+    float cosz = cos(rz);
+
+    return float4x4(
+    cosy*cosz,                -cosy*sinz,               siny,       0,
+    cosx*sinz+sinx*siny*cosz, cosx*cosz-sinx*siny*sinz, -sinx*cosy, 0,
+    sinx*sinz-cosx*siny*cosz, sinx*cosz+cosx*siny*sinz, cosx*cosy,  0,
+    0,                        0,                        0,          1
+    );
+
+}
+float4x4 scale(float4 scale){
+    return float4x4(
+    scale.x,0,      0 ,     0,
+    0,      scale.y,0,      0,
+    0,      0,      scale.z,0,
+    0,      0,      0,      1
+    );
+}
+
+float4x4 translate(float4 translate){
+    return float4x4(
+    1,0,0,translate.x,
+    0,1,0,translate.y,
+    0,0,1,translate.z,
+    0,0,0,1
+    );
+}        
